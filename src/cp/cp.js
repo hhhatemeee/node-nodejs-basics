@@ -9,9 +9,9 @@ const scriptPath = path.join(__dirname, FILES_PATH, SCRIPT)
 
 const spawnChildProcess = async (args) => {
     cp.spawn('node', [scriptPath, ...args], {
-        stdio: [process.stdin, process.stdout, process.stderr],
+        stdio: 'inherit',
     })
 };
 
 // Put your arguments in function call to test this functionality
-await spawnChildProcess(['-v', 'test', 123]);
+await spawnChildProcess(['-asdasdasdv', 'test', 123]);
