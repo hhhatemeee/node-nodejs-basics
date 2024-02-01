@@ -1,6 +1,17 @@
+import cp from 'child_process'
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const FILES_PATH = 'files';
+const SCRIPT = 'script.js';
+const scriptPath = path.join(__dirname, FILES_PATH, SCRIPT)
+
 const spawnChildProcess = async (args) => {
-    // Write your code here
+    cp.spawn('node', [scriptPath, ...args], {
+        stdio: [process.stdin, process.stdout, process.stderr],
+    })
 };
 
 // Put your arguments in function call to test this functionality
-spawnChildProcess( /* [someArgument1, someArgument2, ...] */);
+await spawnChildProcess(['-v', 'test', 123]);
